@@ -3,8 +3,6 @@ import { Schema, model } from 'mongoose';
 export interface WorkoutI {
   name: string;
   exercises: string[];
-  sets: number;
-  reps: number;
 }
 
 const workoutSchema = new Schema(

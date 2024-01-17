@@ -5,6 +5,8 @@ export interface ExerciseI {
   description?: string;
   muscleGroup?: string;
   repsAsTime: boolean;
+  sets: number;
+  reps: number;
 }
 
 const exerciseSchema = new Schema(
