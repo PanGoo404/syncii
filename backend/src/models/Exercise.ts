@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-interface ExerciseI {
+export interface ExerciseI {
   name: string;
   description?: string;
   muscleGroup?: string;

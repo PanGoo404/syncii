@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-interface WorkoutI {
+export interface WorkoutI {
   name: string;
   exercises: string[];
   sets: number;

@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import bc from 'bcryptjs';
 
-interface UserI {
+export interface UserI {
   name: string;
   login: string;
   password: string;
