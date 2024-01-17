@@ -18,6 +18,7 @@
     "build": "tsc",
     "builds": "tsc -w",
     "start": "nodemon build",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "setup": "npm run i && npm run build"
   }
 }
