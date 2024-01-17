@@ -1,5 +1,11 @@
 import express from 'express';
-import { PORT } from './config.js';
+import { PORT, MONGO } from './config.js';
+import mongoose from 'mongoose';
+
+await mongoose.connect(MONGO).then(() => {
+  const { host, port, name: db } = mongoose.connection;
+  console.info(`MongoDB connected at ${host}:${port}/${db}`);
+});
 
 const app = express();
 
