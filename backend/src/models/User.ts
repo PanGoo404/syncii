@@ -29,3 +29,5 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.checkPasswd = async function (password: string) {
   return await bc.compare(password, this.password);
 };
+
+export default model<UserI>('User', userSchema);
