@@ -7,7 +7,7 @@ export interface WorkoutI {
 
 const workoutSchema = new Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }],
   },
   { timestamps: true }

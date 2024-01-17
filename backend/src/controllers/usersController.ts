@@ -9,11 +9,14 @@ export const register = async (req: Req, res: Res, next: Next) => {
       res.status(409);
       return next(new Error('User already exists'));
     }
-    const user = await User.create({ name, login, password });
+    // make first user admin
+    const isAdmin = (await User.countDocuments({})) === 0;
+    const user = await User.create({ name, login, password, isAdmin });
     res.status(201).json({
       _id: user._id,
       login: user.login,
       name: user.name,
+      isAdmin: user.isAdmin,
     });
   } catch (error) {
     next(error);
