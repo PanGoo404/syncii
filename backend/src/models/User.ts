@@ -6,6 +6,7 @@ interface UserI {
   login: string;
   password: string;
   history: string[];
+  isAdmin: boolean;
   checkPasswd: (password: string) => Promise<boolean>;
 }
 
@@ -15,6 +16,7 @@ const userSchema = new Schema(
     login: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     history: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
+    isAdmin: { type: Boolean, required: true, default: false },
   },
   { timestamps: true }
 );
