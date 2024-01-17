@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link {
+  @apply text-white underline hover:text-cyan-400 my-3;
+}
+
+.logout {
+  @apply text-white underline hover:text-red-600 my-3;
+}
+
+.frontlink {
+  @apply text-black rounded-md  underline outline-0 outline-offset-0
+  hover:bg-green-700 hover:text-white hover:outline-8;
+}
+
+.navbar {
+  @apply bg-green-700 h-fit w-max flex-1 text-center text-white p-8;
+}
+
+.title {
+  @apply text-3xl font-bold text-gray-950 mt-8;
+}
