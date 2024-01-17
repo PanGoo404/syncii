@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import { error404, error500 } from './middleware/errorParser.js';
+import apiRouter from './routes/apiRoute.js';
 
 await mongoose.connect(MONGO).then(() => {
   const { host, port, name: db } = mongoose.connection;
@@ -16,9 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // for insomia
 app.use(cookieParser());
 
-app.use('/', (req, res) => {
-  res.status(200).json({ message: 'ACK' });
-});
+app.use('/api', apiRouter);
 
 app.use(error404);
 app.use(error500);
