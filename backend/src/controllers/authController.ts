@@ -3,19 +3,25 @@ import User from '../models/User.js';
 import attachToken from '../utils/attachToken.js';
 
 export const login = async (req: Req, res: Res, next: Next) => {
-  const { login, password } = req.body;
+  const { login, password } = req.body as { login: string; password: string };
   try {
     const user = await User.findOne({ login });
-    if (!user) return res.status(404).send('Wrong credentials');
+    if (!user) {
+      res.status(400);
+      return next(new Error('Wrong credentials'));
+    }
 
-    if (!user.checkPasswd(password))
-      return res.status(401).send('Wrong credentials');
+    if (!user.checkPassword(password)) {
+      res.status(400);
+      return next(new Error('Wrong credentials'));
+    }
 
     attachToken(res, user._id);
 
     res.status(200).json({
       _id: user._id,
       login: user.login,
+      name: user.name,
     });
   } catch (error) {
     next(error);

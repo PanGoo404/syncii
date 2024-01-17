@@ -1,13 +1,13 @@
 import { Schema, model } from 'mongoose';
-import bc from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 export interface UserI {
   name: string;
   login: string;
   password: string;
-  history: string[];
+  workouts: string[];
   isAdmin: boolean;
-  checkPasswd: (password: string) => Promise<boolean>;
+  checkPassword: (password: string) => Promise<boolean>;
 }
 
 const userSchema = new Schema(
@@ -15,7 +15,7 @@ const userSchema = new Schema(
     name: { type: String, required: true },
     login: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    history: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
+    workouts: [{ type: Schema.Types.ObjectId, ref: 'Workout' }],
     isAdmin: { type: Boolean, required: true, default: false },
   },
   { timestamps: true }
@@ -23,11 +23,11 @@ const userSchema = new Schema(
 
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) next();
-  this.password = await bc.hash(this.password, 12);
+  this.password = await bcrypt.hash(this.password, 2);
 });
 
-userSchema.methods.checkPasswd = async function (password: string) {
-  return await bc.compare(password, this.password);
+userSchema.methods.checkPassword = async function (password: string) {
+  return await bcrypt.compare(password, this.password);
 };
 
 export default model<UserI>('User', userSchema);

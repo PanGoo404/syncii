@@ -6,7 +6,8 @@ import {
 
 const router = Router();
 
-router.post('/', login);
-router.delete('/', logout);
+router.post('/', login); // ok
+router.delete('/', logout); // ok
+router.get('/', logout); // ok
 
 export default router;
