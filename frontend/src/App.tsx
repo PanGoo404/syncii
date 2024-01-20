@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <UserProvider>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 gap-0">
           <Sidebar />
           <Outlet />
         </div>

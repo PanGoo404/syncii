@@ -10,17 +10,17 @@ import {
 import './index.css';
 
 import Welcome from './pages/Welcome.tsx';
-// import Create from './pages/Create.tsx';
+import Create from './pages/Create.tsx';
 import Register from './pages/Register.tsx';
-// import Login from './pages/Login.tsx';
+import Login from './pages/Login.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index element={<Welcome />} />
-      {/* <Route path="/create" element={<Create />} /> */}
+      <Route path="/create" element={<Create />} />
       <Route path="/register" element={<Register />} />
-      {/* <Route path="/login" element={<Login />} /> */}
+      <Route path="/login" element={<Login />} />
     </Route>
   )
 );

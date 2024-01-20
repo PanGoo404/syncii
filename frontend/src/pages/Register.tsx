@@ -5,6 +5,7 @@ import useUserContext from '../hooks/useUserContext';
 const Register = () => {
   const [_, setUser] = useUserContext();
 
+  const [name, setName] = useState('');
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -19,10 +20,10 @@ const Register = () => {
       setPasswordConfirm('');
       return;
     }
-    const res = await fetch('http://localhost:4000/register', {
+    const res = await fetch('/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ login, password }),
+      body: JSON.stringify({ login, password, name }),
     });
     if (!res.ok) {
       alert('Something went wrong!');
@@ -40,9 +41,26 @@ const Register = () => {
     <div>
       <h1 className="title">Register</h1>
       <form className="form" onSubmit={handleSubmit}>
-        <input type="password" placeholder="Password" />
-        <input type="text" placeholder="Login" />
-        <input type="password" placeholder="Confirm Password" />
+        <input
+          onChange={(e) => setName(e.target.value)}
+          type="text"
+          placeholder="Name"
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          onChange={(e) => setLogin(e.target.value)}
+          type="text"
+          placeholder="Login"
+        />
+        <input
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          type="password"
+          placeholder="Confirm Password"
+        />
         <button type="submit">Register</button>
       </form>
     </div>
