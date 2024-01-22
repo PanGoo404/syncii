@@ -26,12 +26,12 @@ const Welcome = () => {
   //   })();
   // }, []);
 
-  useEffect(() => {
-    const;
-  });
+  // useEffect(() => {
+  //   const;
+  // });
 
   return (
-    <div className="w-max flex items-start pt-12 text-center flex-col">
+    <div className="flex flex-col items-start pt-12 text-center w-max">
       {user ? (
         <>
           <h1 className="text-3xl">Welcome {user.login}!</h1>
