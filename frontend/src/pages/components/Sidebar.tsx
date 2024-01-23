@@ -5,7 +5,7 @@ const Sidebar = () => {
   const [user] = useUserContext();
 
   return (
-    <div className="navbar">
+    <nav className="navbar">
       <h1 className="text-3xl hover:text-cyan-400">
         <Link to="/">Workout Tracker</Link>
       </h1>
@@ -18,7 +18,7 @@ const Sidebar = () => {
             <li className="link">
               <Link to="/workouts">List</Link>
             </li>
-            <li className="logout">
+            <li className="link logout">
               <Link to="/logout">Logout</Link>
             </li>
           </>
@@ -33,7 +33,7 @@ const Sidebar = () => {
           </>
         )}
       </ul>
-    </div>
+    </nav>
   );
 };
 

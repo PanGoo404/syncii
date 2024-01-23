@@ -2,31 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-.link {
-  @apply text-white underline hover:text-cyan-400 my-3;
+/* debug */
+* {
+  outline: 1px red solid;
 }
 
-.logout {
-  @apply text-white underline hover:text-red-600 my-3;
+/* main container */
+main {
+  @apply grid gap-0;
+  grid-template-columns: 1fr 4fr;
 }
 
-.frontlink {
-  @apply text-black rounded-md  underline outline-0 outline-offset-0
-  hover:bg-green-700 hover:text-white hover:outline-8;
+/* outlet */
+article {
+  @apply flex flex-col items-center justify-center w-full gap-8 p-12 text-center;
 }
 
-.navbar {
-  @apply bg-green-700 h-fit w-max flex-1 text-center text-white p-8;
+article .link {
+  @apply underline hover:text-cyan-400;
 }
 
-.title {
-  @apply text-3xl font-bold text-gray-950 mt-8;
+/* sidebar */
+nav {
+  @apply h-screen p-6 text-center text-white bg-green-800;
 }
 
-.form {
-  @apply flex flex-col justify-center items-center bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 gap-5;
+nav > * {
+  @apply py-4;
 }
 
-.form input {
-  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+nav .link {
+  @apply py-4 hover:text-cyan-400;
+}
+
+nav .link.logout {
+  @apply py-4 font-bold hover:text-red-600;
+}
+
+/* login & register */
+form {
+  @apply flex flex-col gap-4;
+}
+
+form input {
+  @apply p-1 px-3 border border-gray-300 rounded-lg;
+}
+
+form button {
+  @apply py-2 text-xl text-white bg-green-800 shadow-lg rounded-2xl;
 }

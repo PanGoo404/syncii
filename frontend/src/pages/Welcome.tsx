@@ -26,12 +26,12 @@ const Welcome = () => {
   //   })();
   // }, []);
 
-  useEffect(() => {
-    const;
-  });
+  // useEffect(() => {
+  //   const;
+  // });
 
   return (
-    <div className="w-max flex items-start pt-12 text-center flex-col">
+    <article>
       {user ? (
         <>
           <h1 className="text-3xl">Welcome {user.login}!</h1>
@@ -52,17 +52,17 @@ const Welcome = () => {
           <h1 className="text-3xl">Welcome to Workout Tracker!</h1>
           <p className="text-xl">
             Please{' '}
-            <Link className="frontlink" to="/login">
+            <Link className="link" to="/login">
               login
             </Link>{' '}
             or{' '}
-            <Link to="/register" className="frontlink">
+            <Link to="/register" className="link">
               register
             </Link>
           </p>
         </>
       )}
-    </div>
+    </article>
   );
 };
 

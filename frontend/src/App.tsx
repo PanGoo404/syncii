@@ -6,10 +6,10 @@ function App() {
   return (
     <>
       <UserProvider>
-        <div className="grid grid-cols-2 gap-0">
+        <main>
           <Sidebar />
           <Outlet />
-        </div>
+        </main>
       </UserProvider>
     </>
   );

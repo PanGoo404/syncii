@@ -29,22 +29,22 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <article>
       <h1 className="title">Login</h1>
       <form className="form" onSubmit={handleLogin}>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setLogin(e.target.value)}
-        />
         <input
           type="text"
           placeholder="Login"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setLogin(e.target.value)}
+        />
+        <button>Login</button>
       </form>
-    </div>
+    </article>
   );
 };
 
