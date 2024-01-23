@@ -3,25 +3,53 @@ import Workout from '../models/Workout.js';
 import User from '../models/User.js';
 import { Request as Req, Response as Res, NextFunction as Next } from 'express';
 
-export const createWorkout = async (req: Req, res: Res, next: Next) => {
+export const createWorkout = async (req, res, next) => {
   try {
-    const { title, description, sets, reps, rest, rapsInSecs } = req.body;
+    // Check if req.user is defined
+    if (!req.user) {
+      res.status(401);
+      throw new Error('Not authorized, user not found');
+    }
+
+    const userId = req.user._id;
+    const { title, description, sets, reps, rest } = req.body;
+
     const workout = await Workout.create({
       title,
       description,
       sets,
       reps,
       rest,
-      rapsInSecs,
     });
-    await User.findByIdAndUpdate(req.user._id, {
+
+    await User.findByIdAndUpdate(userId, {
       $push: { workouts: workout._id },
     });
-    res.status(201).json({ workout });
+
+    res.status(201).json(workout);
   } catch (error) {
     next(error);
   }
 };
+// export const createWorkout = async (req: Req, res: Res, next: Next) => {
+//   const userId = req.user._id;
+//   try {
+//     const { title, description, sets, reps, rest } = req.body;
+//     const workout = await Workout.create({
+//       title,
+//       description,
+//       sets,
+//       reps,
+//       rest,
+//     });
+//     await User.findByIdAndUpdate(userId, {
+//       $push: { workouts: workout._id },
+//     });
+//     res.status(201).json({ workout });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 export const getWorkouts = async (req: Req, res: Res, next: Next) => {
   const user = req.user;

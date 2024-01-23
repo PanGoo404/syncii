@@ -16,36 +16,41 @@ const Welcome = () => {
   const [user] = useUserContext();
   const [workouts, setWorkouts] = useState<Workout[]>([]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const data = await fetch('/api/workout').then(
-  //       async (res) => await res.json()
-  //     );
-  //     if (!user) return;
-  //     setWorkouts(data);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const data = await fetch('/api/workout').then(
+        async (res) => await res.json()
+      );
+      if (!user) return;
+      setWorkouts(data);
+    })();
+  }, []);
 
   // useEffect(() => {
   //   const;
   // });
 
+  const workoutList = workouts.length ? (
+    <ul className="text-xl">
+      {Array.isArray(workouts) &&
+        workouts.map((workout) => (
+          <li key={workout._id}>
+            <Link to={`/workout/${workout._id}`} className="card">
+              {`${workout.name} (${workout.reps} x ${workout.sets}) - ${workout.description}`}
+            </Link>
+          </li>
+        ))}
+    </ul>
+  ) : (
+    <p className="text-xl">No workouts yet!</p>
+  );
+
   return (
-    <article>
+    <article className={user ? 'top' : ''}>
       {user ? (
         <>
-          <h1 className="text-3xl">Welcome {user.login}!</h1>
-          {
-            <ul className="text-xl">
-              {Array.isArray(workouts) &&
-                workouts.map((workout) => (
-                  <li key={workout._id}>
-                    {`${workout.name} (${workout.reps} x ${workout.sets}) - ${workout.description}`}
-                  </li>
-                ))}
-            </ul>
-          }
-          <li className="workout-list"></li>
+          <h1 className="text-3xl title">Welcome {user.login}!</h1>
+          {workoutList}
         </>
       ) : (
         <>

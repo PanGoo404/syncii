@@ -6,7 +6,7 @@ export interface WorkoutI {
   sets: number;
   reps: number;
   rest: number;
-  rapsInSecs: boolean;
+  // rapsInSecs: boolean;
 }
 
 const workoutSchema = new Schema(
@@ -16,7 +16,7 @@ const workoutSchema = new Schema(
     sets: { type: Number, default: 3 },
     reps: { type: Number, default: 10 },
     rest: { type: Number, default: 120 },
-    rapsInSecs: { type: Boolean, default: false },
+    // rapsInSecs: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

@@ -38,7 +38,7 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <article>
       <h1 className="title">Register</h1>
       <form className="form" onSubmit={handleSubmit}>
         <input
@@ -61,9 +61,9 @@ const Register = () => {
           type="password"
           placeholder="Confirm Password"
         />
-        <button type="submit">Register</button>
+        <button>Register</button>
       </form>
-    </div>
+    </article>
   );
 };
 

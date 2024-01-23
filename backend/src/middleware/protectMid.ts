@@ -13,7 +13,7 @@ export const userOnly = async (req: Req, res: Res, next: Next) => {
   try {
     const decoded = jwt.verify(token, JWT_SEC) as jwt.JwtPayload;
     req.user = await User.findById(decoded.id).select('-password');
-    return next();
+    next();
   } catch (error) {
     res.status(401);
     return next(new Error('Not authorized, token failed'));
@@ -33,11 +33,7 @@ export const adminOnly = (req: Req, res: Res, next: Next) => {
 // $ - self (and admin) only
 // usage: router.get([endpoint], userOnly, selfOnly(), [controllers]);
 export const selfOnly = (req: Req, res: Res, next: Next) => {
-  if (
-    req.user &&
-    (req.user.isAdmin || req.user._id.toString() === req.params.id)
-  )
-    next();
+  if (req.user && (req.user.isAdmin || req.user._id == req.params.id)) next();
   else {
     res.status(401);
     return next(new Error('Not authorized to access this route'));
