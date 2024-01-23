@@ -72,3 +72,16 @@ form input[type='number'] {
 form button {
   @apply py-2 text-xl text-white bg-green-800 shadow-lg rounded-2xl;
 }
+
+button.delete {
+  @apply p-2 px-4 text-xl text-white bg-red-600 shadow-lg rounded-2xl;
+}
+
+/* card */
+.card {
+  @apply flex flex-col items-center justify-center w-64 h-64 gap-4 p-6 text-center bg-white rounded-lg shadow-lg hover:shadow-2xl;
+}
+
+.card .title {
+  @apply text-2xl font-bold text-green-800;
+}

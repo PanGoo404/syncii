@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 
 export interface Workout {
   _id: string;
-  name: string;
+  title: string;
   description?: string;
   sets: number;
   reps: number;
   rest: number;
-  rapsInSecs: boolean;
 }
 
 const Welcome = () => {
@@ -26,21 +25,34 @@ const Welcome = () => {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   const;
-  // });
+  useEffect(() => {
+    const fetchWorkouts = async () => {
+      const data = await fetch('/api/workout').then(
+        async (res) => await res.json()
+      );
+      if (!user) return;
+      setWorkouts(data);
+    };
+    fetchWorkouts();
+  }, []);
 
   const workoutList = workouts.length ? (
-    <ul className="text-xl">
+    <div className="grid grid-cols-4 gap-8">
       {Array.isArray(workouts) &&
         workouts.map((workout) => (
-          <li key={workout._id}>
+          <div key={workout._id}>
             <Link to={`/workout/${workout._id}`} className="card">
-              {`${workout.name} (${workout.reps} x ${workout.sets}) - ${workout.description}`}
+              <h2 className="title">{workout.title}</h2>
+              <p className="text-lg">{workout.description}</p>
+              <div className="stats">
+                <p>Sets: {workout.sets}</p>
+                <p>Reps: {workout.reps}</p>
+                <p>Rest: {workout.rest}</p>
+              </div>
             </Link>
-          </li>
+          </div>
         ))}
-    </ul>
+    </div>
   ) : (
     <p className="text-xl">No workouts yet!</p>
   );

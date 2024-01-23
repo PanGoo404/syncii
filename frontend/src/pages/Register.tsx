@@ -47,14 +47,14 @@ const Register = () => {
           placeholder="Name"
         />
         <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
-        />
-        <input
           onChange={(e) => setLogin(e.target.value)}
           type="text"
           placeholder="Login"
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="Password"
         />
         <input
           onChange={(e) => setPasswordConfirm(e.target.value)}

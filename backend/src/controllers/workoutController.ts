@@ -31,31 +31,12 @@ export const createWorkout = async (req, res, next) => {
     next(error);
   }
 };
-// export const createWorkout = async (req: Req, res: Res, next: Next) => {
-//   const userId = req.user._id;
-//   try {
-//     const { title, description, sets, reps, rest } = req.body;
-//     const workout = await Workout.create({
-//       title,
-//       description,
-//       sets,
-//       reps,
-//       rest,
-//     });
-//     await User.findByIdAndUpdate(userId, {
-//       $push: { workouts: workout._id },
-//     });
-//     res.status(201).json({ workout });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 
 export const getWorkouts = async (req: Req, res: Res, next: Next) => {
   const user = req.user;
   try {
     const workouts = await Workout.find({ _id: { $in: user.workouts } });
-    res.status(200).json({ workouts });
+    res.status(200).json(workouts);
   } catch (error) {
     next(error);
   }
@@ -65,7 +46,7 @@ export const getWorkoutById = async (req: Req, res: Res, next: Next) => {
   const { id } = req.params;
   try {
     const workout = await Workout.findById(id);
-    res.status(200).json({ workout });
+    res.status(200).json(workout);
   } catch (error) {
     next(error);
   }
@@ -80,7 +61,7 @@ export const getUserWorkouts = async (req: Req, res: Res, next: Next) => {
       return next(new Error('User not found'));
     }
     const workouts = await Workout.find({ _id: { $in: user.workouts } });
-    res.status(200).json({ workouts });
+    res.status(200).json(workouts);
   } catch (error) {
     next(error);
   }

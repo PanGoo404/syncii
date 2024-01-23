@@ -14,6 +14,7 @@ import Create from './pages/Create.tsx';
 import Register from './pages/Register.tsx';
 import Login from './pages/Login.tsx';
 import Logout from './pages/Logout.tsx';
+import Workout from './pages/Workout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/workout/:id" element={<Workout />} />
     </Route>
   )
 );
