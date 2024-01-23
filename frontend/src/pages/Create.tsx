@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Workout } from './Welcome';
 import { useNavigate } from 'react-router';
+import useUserContext from '../hooks/useUserContext';
 
 const CreateForm = () => {
+  const [user] = useUserContext();
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [sets, setSets] = useState(3);
@@ -41,6 +44,10 @@ const CreateForm = () => {
       alert(error);
     }
   };
+
+  useEffect(() => {
+    if (!user) navigate('/');
+  });
 
   return (
     <article>
