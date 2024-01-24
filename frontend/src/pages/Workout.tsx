@@ -28,7 +28,7 @@ export default () => {
   }, []);
 
   const handleDelete = async () => {
-    await fetch(`/api/workout/${workoutId}`, {
+    await fetch(`/api/workout/${workoutId?.toString()}`, {
       method: 'DELETE',
     });
     navigate('/');
@@ -47,11 +47,11 @@ export default () => {
               <p>Rest: {workout.rest}</p>
             </div>
           </Link>
-          {/* {user && (
-            <button className="delete" onClick={() => handleDelete}>
+          {user && (
+            <button className="delete" onClick={() => handleDelete()}>
               Delete
             </button>
-          )} */}
+          )}
         </>
       ) : (
         <>

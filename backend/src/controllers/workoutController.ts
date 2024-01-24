@@ -66,3 +66,13 @@ export const getUserWorkouts = async (req: Req, res: Res, next: Next) => {
     next(error);
   }
 };
+
+export const deleteWorkout = async (req: Req, res: Res, next: Next) => {
+  const { id } = req.params;
+  try {
+    const workout = await Workout.findByIdAndDelete(id);
+    res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
