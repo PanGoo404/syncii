@@ -16,16 +16,6 @@ const Welcome = () => {
   const [workouts, setWorkouts] = useState<Workout[]>([]);
 
   useEffect(() => {
-    (async () => {
-      const data = await fetch('/api/workout').then(
-        async (res) => await res.json()
-      );
-      if (!user) return;
-      setWorkouts(data);
-    })();
-  }, []);
-
-  useEffect(() => {
     const fetchWorkouts = async () => {
       const data = await fetch('/api/workout').then(
         async (res) => await res.json()
